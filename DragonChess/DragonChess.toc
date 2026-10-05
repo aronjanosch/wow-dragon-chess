@@ -1,0 +1,46 @@
+## Interface: 16001
+## Title: Dragon Chess
+## Notes: Real-time match-3 with RPG combat. /dchess to open.
+## Author: Aron
+## Version: 0.1.0
+## SavedVariables: DragonChessDB
+## SavedVariablesPerCharacter: DragonChessCharDB
+
+# core + data (order = wow/test/loader.lua CORE_FILES)
+core/rng.lua
+core/timings.lua
+core/board.lua
+core/match.lua
+core/scheduler.lua
+core/board_effects.lua
+core/sim.lua
+core/clock.lua
+core/kit.lua
+core/abilities/amber.lua
+core/abilities/amethyst.lua
+core/abilities/emerald.lua
+core/abilities/ruby.lua
+core/abilities/sapphire.lua
+core/abilities/topaz.lua
+data/enemies.lua
+core/enemy_abilities.lua
+core/enemy.lua
+core/combat.lua
+core/run.lua
+core/debug.lua
+
+# ui
+ui/assets.lua
+ui/board_view.lua
+ui/input.lua
+ui/fx.lua
+ui/juice.lua
+ui/board_fx.lua
+ui/hit_fx.lua
+ui/fight_view.lua
+ui/window.lua
+ui/minimap.lua
+ui/menu.lua
+ui/hint.lua
+ui/debug.lua
+ui/main.lua
