@@ -667,13 +667,20 @@ T.case("no steady-state allocation: effects, holds, animation and sound cut-offs
 	W.wall = W.wall + 10 -- pending sound cut-offs fire now (the stub's StopSound log would count as garbage)
 	W.ns.Assets.tick()
 	frames(W, 45) -- the one-off model re-frame after a load is done (budget is for steady state)
-	local ui_kb = 0
-	local grown = alloc_kb(function()
-		W.wall = W.wall + DT
-		local k = collectgarbage("count")
-		hud:update()
-		ui_kb = ui_kb + collectgarbage("count") - k
-	end, 300, function() ui_kb = 0 end)
+	-- Steady-state garbage shows in every pass; a one-off (a table rehash, whose timing depends on memory addresses,
+	-- failed this check about once in 15 runs) does not: measure up to three passes and keep the smallest.
+	local ui_kb, grown = math.huge, 0
+	for _ = 1, 3 do
+		local pass_kb = 0
+		grown = alloc_kb(function()
+			W.wall = W.wall + DT
+			local k = collectgarbage("count")
+			hud:update()
+			pass_kb = pass_kb + collectgarbage("count") - k
+		end, 300, function() pass_kb = 0 end)
+		if pass_kb < ui_kb then ui_kb = pass_kb end
+		if ui_kb < 1 then break end
+	end
 	T.ok(ui_kb < 1, ("HUD update with effects live allocates < 1 KB per 300 frames (got %.2f KB; total %.2f KB)"):format(ui_kb, grown))
 	T.eq(#W.errors, 0, "no errors")
 end)
