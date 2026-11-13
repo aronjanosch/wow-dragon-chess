@@ -2,7 +2,7 @@
 ## Title: Dragon Chess
 ## Notes: Real-time match-3 with RPG combat and your class's spells. /dchess to open.
 ## Author: Aron
-## Version: 0.3.0
+## Version: 0.3.1
 ## X-Curse-Project-ID: 1799077
 ## SavedVariables: DragonChessDB
 ## SavedVariablesPerCharacter: DragonChessCharDB
