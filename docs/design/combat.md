@@ -52,7 +52,7 @@ Ability clears can hit other ability gems → **chain** activation (queued).
 
 | Status | Source | Effect | HUD |
 |---|---|---|---|
-| Shield (stacks) | Emerald skill | Blocks one enemy hit per stack | icon + count |
+| Shield (stacks) | Emerald skill | Blocks one enemy hit per stack, at most 3 (W1-G4: a cast at the cap changes nothing, emits `shield_capped`, the HUD floats "Shield max"; stored stacks are clamped on load) | icon + count |
 | Fire Shield (timed) | Ruby ult | Blocks and reflects every hit (+100 each, 12 s) | icon + ring |
 | Heal over time `hot` (timed) | Amber skill (Rejuvenation) | 500 HP over 10 s, one tick per second; extendable to 20 ticks | icon + countdown ring, green aura |
 | Curse (timed) | Anubis | Outgoing damage ×0.7 | icon + purple HP bar + drip |

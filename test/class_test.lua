@@ -159,6 +159,18 @@ T.case("texts: every blurb and description resolves its placeholders", function(
 	T.ok(longest > 0, "blurbs measured")
 end)
 
+T.case("W1-G4: every Power Word: Shield skin names the stack cap", function()
+	local n = 0
+	for id, v in pairs(ns.Abilities) do
+		if type(v) == "table" and v.template == "power_word_shield" then
+			n = n + 1
+			local desc = Kit.format_text(v, v.description)
+			T.ok(desc:find("up to " .. ns.Combat.SHIELD_MAX_STACKS .. " stacks", 1, true) ~= nil, id .. ": " .. desc)
+		end
+	end
+	T.ok(n >= 9, "all skins checked (" .. n .. ")")
+end)
+
 T.case("W1-G3: every Fire Shield skin shows the bonus and the 12 s window", function()
 	local n = 0
 	for id, v in pairs(ns.Abilities) do

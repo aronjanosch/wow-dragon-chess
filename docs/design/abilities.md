@@ -41,7 +41,7 @@ score). If this file and the data disagree, the data wins — update this file.
 | | ult | **Lay on Hands** (`lay_on_hands`, W1-G2; replaces Polymorph / convert) | Instant heal of 15 % of max HP (1500), capped at max, 0 under Heal Block | — |
 | **Amethyst** | skill | **Hammer of Justice** (was Stun; `stun` → `hammer_of_justice`) | Stuns enemy 3 s | 200 |
 | | ult | **Mind Control** (was Color Swap; `color_swap` → `mind_control`) | All gems of the partner color → Amethyst (ability gems keep their tier; bombs/junk skipped). One colour per chain; flood regions spawn at most a skill (see below) | — |
-| **Emerald** | skill | **Power Word: Shield** (was Shield; `shield` → `power_word_shield`) | +1 shield stack; each stack blocks one enemy hit (Fire Shield is checked first) | — |
+| **Emerald** | skill | **Power Word: Shield** (was Shield; `shield` → `power_word_shield`) | +1 shield stack, at most 3 (`Combat.SHIELD_MAX_STACKS`, W1-G4; a cast at the cap scores and plays its effect, adds nothing and floats "Shield max"); each stack blocks one enemy hit (Fire Shield is checked first) | — |
 | | ult | **Rain of Fire** (was Bombs; `bombs` → `rain_of_fire`) | 5 random gems become bombs. A bomb keeps its color, triggers when matched with that color, clears 3×3 | 50 per bomb |
 
 Mind Control (Amethyst) adds no ability damage; damage comes only from the resulting clears. The Amber abilities are heals
@@ -84,7 +84,7 @@ Abilities run from per-run copies (`RunManager.run_kits`, see [run.md](run.md)).
 | Color Chain | `target_most_common` (false) — hit the most common other colour | Lightning Rod |
 | Color Chain | `delay_per_8_gems` (0) — enemy attack delay per 8 gems cleared | Surge |
 | Stun | `special_multiplier` (1.0) — stun × this if the next intent is special | Interrupt |
-| Shield | `thorns_damage` (0) — damage to the enemy per blocked hit | Thorns |
+| Shield | `shield_max` (3, text only, pinned to the combat cap by a test), `thorns_damage` (0) — damage to the enemy per blocked hit | Thorns |
 
 Run flag `bombs_trigger_adjacent` (Wildcard Bombs): bombs also go off when an orthogonally
 adjacent gem clears (board property, set per fight by `game.gd`).

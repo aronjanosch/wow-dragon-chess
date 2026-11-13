@@ -95,5 +95,8 @@ conflicts with older docs (Godot docs, archived roadmap), this file wins. Update
 - **Hellhound, Harpy and Qiraji Scarab become fast attackers** (smaller, more frequent hits, same DPS as before; values in the spec). Global `Run.ATTACK_PACE` and all other enemies unchanged; the Forest Troll "berserk" phase was dropped (collides with the Amber heals, no lasting cue).
 - Matchup table (who is strong or weak against which enemy rhythm) lives in `docs/design/roster.md`. Fallbacks if playtests complain: Hellhound back to the old bite; window 12 s; fast cooldowns 1.4–1.6 -> 2.0. Spec: `docs/specs/w1-g3-reflect-and-fast-attackers.md`.
 
+## W1-G4 Shield stacks cap at 3 (2026-11-13)
+- **Power Word: Shield (Emerald skill, all skins) holds at most 3 stacks** (`Combat.SHIELD_MAX_STACKS`). A cast at the cap still scores and plays its effect but adds nothing and floats "Shield max". Measured: the bot never banks, so 100-seed win rates do not move; the cap closes the deliberate bank of ten stacks before a boss. Carry-over between fights stays. Fallbacks if banking stays the best opening: cap 2, or no carry-over. Spec: `docs/specs/w1-g4-shield-stack-cap.md`.
+
 ## One repo (2026-11-13)
 - **One repo:** the addon is developed in the public repo `aronjanosch/wow-dragon-chess` (addon at the root, fresh history); the former private repo with the Godot prototype is an archive. Releases via tag + BigWigs packager.
