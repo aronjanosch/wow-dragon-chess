@@ -1,6 +1,6 @@
 # Spec: W1-G4 — Shield stacks cap at 3
 
-Status: agreed (rev 2 after critic review, 2026-11-13). User (2026-11-13, translated): "Please work through all open points" (this cap
+Status: implemented — awaiting playtest (rev 2 after critic review, 2026-11-13). User (2026-11-13, translated): "Please work through all open points" (this cap
 was listed as an open finding with the proposal "cap at 3").
 Milestone: W1 Class identity. Track: G.
 

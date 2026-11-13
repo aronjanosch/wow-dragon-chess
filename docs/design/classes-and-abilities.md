@@ -50,7 +50,7 @@ spell: spec W1-G1 section 2 (and `ui/assets.lua`).
 | A2 | `lay_on_hands` — Amber ult, instant heal (15 % of max HP) | Last Stand | **Lay on Hands** | Revive Pet | Healing Potion | Greater Heal | Chain Heal | Evocation | Healthstone | Healing Touch |
 | M1 | `hammer_of_justice` — Amethyst skill, 200 dmg + stun 3 s | Intercept | **Hammer of Justice** | Scatter Shot | Cheap Shot | Psychic Scream | Earth Shock | Counterspell | Death Coil | Bash |
 | M2 | `mind_control` — Amethyst ult, one colour becomes Amethyst | Challenging Shout | Redemption | Tame Beast | Blind | **Mind Control** | Purge | Polymorph | Enslave Demon | Faerie Fire |
-| E1 | `power_word_shield` — Emerald skill, block the next hit (stacks) | Shield Block | Blessing of Protection | Feign Death | Evasion | **Power Word: Shield** | Lightning Shield | Ice Barrier | Shadow Ward | Barkskin |
+| E1 | `power_word_shield` — Emerald skill, block the next hit (stacks, max 3) | Shield Block | Blessing of Protection | Feign Death | Evasion | **Power Word: Shield** | Lightning Shield | Ice Barrier | Shadow Ward | Barkskin |
 | E2 | `rain_of_fire` — Emerald ult, 5 gems become bombs | Recklessness | Seal of Command | Explosive Trap | Ambush | Shadow Word: Pain | Fire Nova Totem | Blast Wave | **Rain of Fire** | Insect Swarm |
 | R1 | `flamestrike` — Ruby skill, 150 dmg + cone clear | Cleave | Holy Wrath | Multi-Shot | Eviscerate | Holy Fire | Flame Shock | **Flamestrike** | Hellfire | Swipe |
 | R2 | `fire_shield` — Ruby ult, 12 s nullify + reflect (+100 per hit) | Retaliation | Retribution Aura | Deterrence | Riposte | Inner Fire | Grounding Totem | Fire Ward | **Fire Shield**** | Thorns |

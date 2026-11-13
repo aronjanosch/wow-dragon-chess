@@ -88,6 +88,7 @@ local ENEMY_BAR_X = 590
 
 -- Player status strip order (combat:hud_state statuses keys; "sandstorm" = the board's gravity slow).
 local HEAL_BLOCK_GAP = 3.0 -- s between two "Heal blocked" floats
+local SHIELD_CAP_GAP = 3.0 -- s between two "Shield max" floats
 local PLAYER_STATUS = { "shield", "fire_shield", "hot", "curse", "stun", "heal_block", "sandstorm" }
 local ENEMY_ICON = 34 -- Aegis / Mirror icons over the enemy
 local PHASE_IN, PHASE_HOLD, PHASE_FADE = 0.15, 1.6, 0.5
@@ -421,6 +422,14 @@ function FightView.new(win)
 			if last ~= nil and now >= last and now - last < HEAL_BLOCK_GAP then return end
 			self.heal_block_t = now
 			self:_pop_player("Heal blocked", A.COLOR.POP_INFO)
+		end,
+		shield_capped = function()
+			-- a cast at the cap: say it, but not on every cast of a cascade
+			local now = self:_now()
+			local last = self.shield_cap_t
+			if last ~= nil and now >= last and now - last < SHIELD_CAP_GAP then return end
+			self.shield_cap_t = now
+			self:_pop_player("Shield max", A.COLOR.POP_INFO)
 		end,
 		match_resolved = function(length, gems, depth, dcol, drow) self:_on_match(length, gems, depth, dcol, drow) end,
 		ability_gem_spawned = function(col, row, tier, gem_type) self:_on_gem_spawned(col, row, tier, gem_type) end,
@@ -855,7 +864,7 @@ function FightView:_reset_view()
 	self.cleared_t0 = nil
 	self:_end_transition()
 	self.phase_t0, self.msg_t0, self.junk_t0 = nil, nil, nil
-	self.cast_t0, self.heal_block_t = nil, nil
+	self.cast_t0, self.heal_block_t, self.shield_cap_t = nil, nil, nil
 	self.vig_dur, self.vig_peak, self.knock_t0, self.reflect_t = VIGNETTE_TIME, 1, nil, nil
 	self.origin_x, self.origin_y = (self.juice.board_w or 512) / 2, (self.juice.board_h or 512) / 2
 	self.proj_type, self.proj_weight = nil, 1
@@ -896,7 +905,7 @@ end
 
 local HANDLER_ORDER = {
 	"ability_triggered", "fight_started", "enemy_defeated", "enemy_damaged", "enemy_windup",
-	"player_damaged", "player_healed", "attack_blocked", "attack_reflected", "heal_blocked",
+	"player_damaged", "player_healed", "attack_blocked", "attack_reflected", "heal_blocked", "shield_capped",
 	"gems_cleared", "swap_rejected", "swap_accepted", "run_lost", "enemy_phase_changed", "enemy_mirror_changed", "enemy_immune",
 	"junk_spawned", "match_resolved", "ability_gem_spawned", "enemy_ability_executed", "score_awarded",
 }
@@ -1139,7 +1148,7 @@ function FightView:_on_fight_started(enemy)
 	self:_end_transition()
 	self.cleared_t0, self.death_t0, self.hit_t0 = nil, nil, nil
 	self.phase_t0, self.msg_t0 = nil, nil
-	self.cast_t0, self.heal_block_t = nil, nil
+	self.cast_t0, self.heal_block_t, self.shield_cap_t = nil, nil, nil
 	self.anim_temp = nil
 	set_alpha(self.cleared, 0)
 	set_alpha(self.enemy_holder, 1)

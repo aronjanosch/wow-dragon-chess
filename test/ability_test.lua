@@ -233,6 +233,12 @@ T.case("Power Word: Shield: +1 stack per cast", function()
 	T.eq(c:take_damage(300), "shield", "blocks")
 end)
 
+T.case("W1-G4: the text names the cap and it equals Combat.SHIELD_MAX_STACKS", function()
+	local a = ns.Abilities.power_word_shield
+	T.eq(a.shield_max, ns.Combat.SHIELD_MAX_STACKS, "shield_max matches the combat cap")
+	T.eq(ns.Kit.format_text(a, a.description), "Shield: blocks the next enemy attack (up to 3 stacks)", "description")
+end)
+
 T.case("Rain of Fire: 5 bombs; a bomb deals 50 (x its colour's weakness) and clears 3x3", function()
 	local sim, c = H.fight(nil)
 	local bombs = spy(sim, "convert_random_to_bombs")

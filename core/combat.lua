@@ -33,6 +33,7 @@ local _, ns = ...
 --   player_healed(amount, source)            HP actually restored; source hot | ult | boss | debug
 --   heal_lost(amount, reason, source)        part of a heal that did not land: reason overheal | block (never for boss)
 --   attack_blocked / attack_reflected(amount) / heal_blocked
+--   shield_capped                            W1-G4: a Shield cast at SHIELD_MAX_STACKS added nothing
 --   status_changed(id, active, remaining, max)   id fire_shield|hot|curse|stun|heal_block|shield (added; Godot polls / per-status signals)
 --   ability_triggered(info)                  banner: tier, toast, blurb, score, col, row, is_bomb, gem_type, icon, id
 --   score_awarded(amount) / score_changed(total)
@@ -104,6 +105,9 @@ function Combat.match_score(length)
 end
 
 -- Timed player statuses, fixed order (events, serialize).
+-- W1-G4: at most this many shield stacks (the text of the template, `shield_max`, is pinned to it by a test).
+Combat.SHIELD_MAX_STACKS = 3
+
 Combat.TIMED_STATUSES = { "fire_shield", "hot", "curse", "stun", "heal_block" }
 
 Combat.SNAPSHOT_VERSION = 1
@@ -276,9 +280,14 @@ function Combat:apply_fire_shield(duration, reflect_multiplier, reflect_bonus)
 	self:_start_status("fire_shield", duration)
 end
 
+-- W1-G4: at SHIELD_MAX_STACKS nothing changes (no stack, no thorns, no status_changed), only shield_capped.
 -- thorns: Shield.thorns_damage of the cast; the newest cast wins.
 function Combat:add_shield_stack(thorns)
 	local sh = self.status.shield
+	if sh.stacks >= Combat.SHIELD_MAX_STACKS then
+		self:_emit("shield_capped")
+		return
+	end
 	sh.stacks = sh.stacks + 1
 	sh.thorns = max(thorns or 0, 0)
 	self:_emit_status("shield")
@@ -686,7 +695,7 @@ function Combat.deserialize(data, opts)
 	})
 	self.game_over = data.game_over == true
 	if type(data.shield) == "table" then
-		self.status.shield.stacks = tonumber(data.shield[1]) or 0
+		self.status.shield.stacks = min(tonumber(data.shield[1]) or 0, Combat.SHIELD_MAX_STACKS)
 		self.status.shield.thorns = tonumber(data.shield[2]) or 0
 	end
 	for i = 1, #Combat.TIMED_STATUSES do

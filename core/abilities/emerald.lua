@@ -7,10 +7,11 @@ ns.Abilities = A
 A.power_word_shield = {
 	id = "power_word_shield", template = "power_word_shield", color = 2, tier = 1, icon = "power_word_shield",
 	name = "Power Word: Shield",
-	description = "Shield: blocks the next enemy attack (stacks)",
+	description = "Shield: blocks the next enemy attack (up to {shield_max} stacks)",
 	blurb = "Block next enemy hit · stacks",
 	damage = 0, score = 150,
 	shield_stacks = 1,
+	shield_max = 3, -- text only; test/combat_test.lua pins it to Combat.SHIELD_MAX_STACKS
 	thorns_damage = 0, -- boon knob (Thorns), unused
 	execute = function(self, ctx)
 		local combat = ctx.combat

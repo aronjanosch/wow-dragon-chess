@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- Shield spells (Power Word: Shield and its class versions) stack up to three times; a cast at the limit shows "Shield max".
+
 ## 0.3.0
 
 - **New gem art:** hand-painted gems made for this addon replace the old set.
