@@ -1,0 +1,29 @@
+# Packages the addon and uploads it on every pushed tag (BigWigs packager).
+# CurseForge: needs the repo secret CF_API_KEY and the TOC line "## X-Curse-Project-ID: <id>";
+# without them only the GitHub release with the zip is created.
+name: Package and release
+
+on:
+  push:
+    tags:
+      - '**'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      # the packager's README and wiki name the CurseForge / GitHub tokens differently: set both spellings
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      CF_API_TOKEN: ${{ secrets.CF_API_KEY }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+      GH_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Package and release
+        uses: BigWigsMods/packager@v2

@@ -1,0 +1,11 @@
+# Local release zips (tools/package.sh) and packager output
+/dist/
+/.release/
+
+# Claude Code local state
+/.claude/worktrees/
+/.claude/settings.local.json
+/.claude/scheduled_tasks.lock
+
+.vscode/
+.DS_Store

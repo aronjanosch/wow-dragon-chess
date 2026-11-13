@@ -1,0 +1,8 @@
+## Interface: 16001
+## Title: Dragon Chess Probe
+## Notes: Dev-only fact finder for the Dragon Chess addon (W0-P1). Writes results to SavedVariables.
+## Author: Aron
+## Version: 0.1
+## SavedVariables: DragonChessProbeDB
+screens_data.lua
+Probe.lua

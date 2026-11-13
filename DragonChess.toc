@@ -1,0 +1,55 @@
+## Interface: 16001
+## Title: Dragon Chess
+## Notes: Real-time match-3 with RPG combat and your class's spells. /dchess to open.
+## Author: Aron
+## Version: 0.3.0
+## X-Curse-Project-ID: 1799077
+## SavedVariables: DragonChessDB
+## SavedVariablesPerCharacter: DragonChessCharDB
+
+# core + data (order = test/loader.lua CORE_FILES)
+core/rng.lua
+core/timings.lua
+core/board.lua
+core/match.lua
+core/scheduler.lua
+core/board_effects.lua
+core/sim.lua
+core/clock.lua
+core/kit.lua
+core/abilities/amber.lua
+core/abilities/amethyst.lua
+core/abilities/emerald.lua
+core/abilities/ruby.lua
+core/abilities/sapphire.lua
+core/abilities/topaz.lua
+core/classes.lua
+data/enemies.lua
+core/enemy_abilities.lua
+core/enemy.lua
+core/combat.lua
+core/run.lua
+#@debug@
+core/debug.lua
+#@end-debug@
+
+# ui
+ui/assets.lua
+ui/board_view.lua
+ui/input.lua
+ui/fx.lua
+ui/juice.lua
+ui/board_fx.lua
+ui/hit_fx.lua
+ui/fight_view.lua
+ui/window.lua
+ui/panel.lua
+ui/minimap.lua
+ui/menu.lua
+ui/start_menu.lua
+ui/result.lua
+ui/hint.lua
+#@debug@
+ui/debug.lua
+#@end-debug@
+ui/main.lua

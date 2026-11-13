@@ -1,0 +1,21 @@
+# BigWigs packager config: what a pushed tag packages and uploads (.github/workflows/release.yml).
+package-as: DragonChess
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
+# Development files that do not ship. The debug panel is dev-only: its two files are ignored here and their TOC
+# lines sit between #@debug@ markers, which the packager disables.
+ignore:
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - .claude
+  - docs
+  - test
+  - tools
+  - probe
+  - dist
+  - core/debug.lua
+  - ui/debug.lua
